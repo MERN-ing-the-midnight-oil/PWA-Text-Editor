@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-
   "scripts": {
     "start:dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run start\" ",
     "start": "npm run build && cd server && node server.js",
@@ -12,12 +11,12 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "client": "cd client && npm start"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "idb": "^7.1.1",
     "if-env": "^1.0.4"
   },
   "devDependencies": {

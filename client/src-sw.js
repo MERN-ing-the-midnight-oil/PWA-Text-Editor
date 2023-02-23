@@ -31,6 +31,7 @@ registerRoute(
 	// Here we define the callback function that will filter the requests we want to cache (in this case, JS and CSS files)
 	({ request }) => ["style", "script", "worker"].includes(request.destination),
 	new StaleWhileRevalidate({
+		//StaleWhileRevalidate uses cached asset immediately, but puts any new assets on deck.
 		// Name of the cache storage.
 		cacheName: "asset-cache",
 		plugins: [

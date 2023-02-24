@@ -1,13 +1,13 @@
 import { openDB } from "idb";
 
 const initdb = async () =>
-	openDB("jate", 1, {
+	openDB("content", 1, {
 		upgrade(db) {
-			if (db.objectStoreNames.contains("jate")) {
+			if (db.objectStoreNames.contains("content")) {
 				console.log("jate database already exists");
 				return;
 			}
-			db.createObjectStore("jate", { keyPath: "id", autoIncrement: true });
+			db.createObjectStore("content", { keyPath: "id", autoIncrement: true });
 			console.log("jate database created");
 		},
 	});
@@ -28,8 +28,8 @@ export const putDb = async (id, content) => {
 };
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error("getDb not implemented"); //and a get (miniproject)
-export const getAllDb = async () => {
+//export const getDb = async () => console.error("getDb not implemented"); //and a get (miniproject)
+export const getDb = async () => {
 	console.log("GET all from the database");
 	const contentDb = await openDB("content", 1);
 	const tx = contentDb.transaction("content", "readonly");
@@ -37,6 +37,6 @@ export const getAllDb = async () => {
 	const request = store.getAll();
 	const result = await request;
 	console.log("result.value", result);
-	return result;
+	return result?.content;
 };
 initdb();
